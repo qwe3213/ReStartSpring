@@ -36,11 +36,21 @@
                     value="classpath:mappers/**/*Mapper.xml" />
           
           </bean>
+            
+          <!-- SqlSessionTemplate : 디비연결, mybatis설정, 매퍼설정(SQL실행), 디비종료 -->
+          <bean id="sqlSession"
+                class="org.mybatis.spring.SqlSessionTemplate"
+                destroy-method="clearCache"
+                >
+                <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+              
+          </bean>  
+        
         
           
           <!-- 외부 객체 등록  -->
           <context:component-scan base-package="com.itwillbs.persistence" />          
-       
+       <!--  <bean id="mado" class="com.itwillbs.persistence.MemberDAOImpl"></bean>     -->
           
           
 </beans>
