@@ -24,4 +24,19 @@
       where userid=#{userid} and userpw=#{userpw}
      </select>
     <!-- 로그인  -->
+
+     <!-- 회원정보 수정 -->
+     <update id="update">
+      update tbl_member set username=#{username},useremail=#{useremail},updatedate=now()  
+      where userid=#{userid} and userpw=#{userpw}      
+     </update>
+     <!-- 회원정보 수정 -->
+  
+      <!-- 회원정보 삭제-->
+       <delete id="delete">
+         delete from tbl_member 
+         where userid=#{userid} and userpw=#{userpw}
+       </delete>
+
+      <!-- 회원정보 삭제-->
   </mapper>

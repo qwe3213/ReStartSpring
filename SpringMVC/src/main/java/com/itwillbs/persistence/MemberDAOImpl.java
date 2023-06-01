@@ -80,7 +80,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 
 	@Override
-	public MemberVO loginMember(String userid, String userpw) {
+	public MemberVO loginMember(String id, String pw) {
 
 		// 아이디, 비밀번호 전달받아서 사용 
 		// (2개 이상의 정보를 mapper 각각 전달 불가)
@@ -92,11 +92,42 @@ public class MemberDAOImpl implements MemberDAO {
 	    // 만약에 전달된 정보가 하나의 객체에 저장이 불가능한 경우!
 		Map<String, Object> params = new HashMap<String, Object>();	
 		
+//		params.put("mapper 매핑된 이름", 전달되는 값 );
+		params.put("userid", id);
+		params.put("userpw", pw);
+		
+		
 		// SQL 호출, 실행
-//		sqlSession.selectOne(NAMESPACE+".login",vo);
+		sqlSession.selectOne(NAMESPACE+".login",params);
 		
 		return null;
 	}
+
+
+	@Override
+	public Integer updateMember(MemberVO uvo) {
+	     
+		logger.debug(" 테스트 -> DAO 호출 : 회원정보 수정 ");
+		// 수정할 정보를 가져옴(uvo)
+	    logger.debug("DAO -> mapper 호출 -> SQL 실행 ");
+		Integer result = sqlSession.update(NAMESPACE+".update",uvo);
+		logger.debug(" SQL 실행결과를 리턴 ");
+		
+		return result;
+	}
+
+
+	@Override
+	public Integer deleteMember(MemberVO dvo) {
+	
+		logger.debug("테스트 -> DAO 호출 : 회원정보 삭제 ");
+        logger.debug("DAO -> mapper 호출 -> SQL 실행");
+        
+        Integer result = sqlSession.delete(NAMESPACE+".delete",dvo);
+		return result;
+	}
+	
+	
 	
 
 } // DAOImpl

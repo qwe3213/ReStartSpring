@@ -68,7 +68,7 @@ public class MemberDAOTest {
          mdao.insertMember(vo);
 	      
 	 }
-	 @Test
+//	 @Test
 	 public void 로그인테스트() throws Exception{
 		 logger.debug("로그인 테스트 시작");
 		 
@@ -89,4 +89,49 @@ public class MemberDAOTest {
 		 
 	 }
 	
+//	 @Test
+	 public void 회원정보수정테스트() throws Exception{
+		 logger.debug("회원정보수정 테스트 시작@@@@@@@@@");
+	  
+		 // 회원정보 수정
+		 MemberVO uvo = new MemberVO();
+		 
+		 uvo.setUserid("admin2");
+		 uvo.setUserpw("12343");
+         uvo.setUsername("수정수정이름");
+		 uvo.setUseremail("ADMIN(수정)@naver.com");
+		 
+         Integer result = mdao.updateMember(uvo);
+		   
+		 if(result == 1) {
+			 logger.debug("수정성공오오오오오오오옹@@@@@");
+		 }else {
+		      logger.debug("수정실패!! ㅠㅠ"); 
+		 }
+		    
+		 logger.debug("회원정보수정 테스트 끝@@@@@@@@@@@@@@@");
+	    
+	 }
+	 @Test
+	 public void 회원정보삭제()throws Exception{
+		 
+		 logger.debug("회원정보삭제 테스트 시작@@@@@@@@@@@@@@@@");
+	       
+		 // 회원정보 삭제
+		 MemberVO dvo = new MemberVO();
+		 
+		 dvo.setUserid("itwill2");
+		 dvo.setUserpw("1234");
+		
+		 Integer result = mdao.deleteMember(dvo);
+		 
+	     if(result == 1) {
+	    	  logger.debug("삭제완료!!");
+	    	 
+	     }else {
+	    	 logger.debug("삭제실패.... 다시@@@@@@@@@");
+	     }
+	     logger.debug("회원정보삭젲완료올오롱로아롱롤옹로");
+	 }
+	   
 }
