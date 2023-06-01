@@ -22,12 +22,9 @@ public class MemberVO {
 	private String userid;
 	private String userpw;
 	private String username;
-	private String useremalil;
+	private String useremail;
 	private Timestamp regdate;
 	private Timestamp updatedate;
-	
-	
-	
 	public String getUserid() {
 		return userid;
 	}
@@ -46,11 +43,11 @@ public class MemberVO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getUseremalil() {
-		return useremalil;
+	public String getUseremail() {
+		return useremail;
 	}
-	public void setUseremalil(String useremalil) {
-		this.useremalil = useremalil;
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
 	public Timestamp getRegdate() {
 		return regdate;
@@ -66,10 +63,12 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", useremalil="
-				+ useremalil + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", useremail="
+				+ useremail + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
 	}
 	
 	
+	
+
 	
 }
