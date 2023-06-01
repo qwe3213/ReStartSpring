@@ -1,5 +1,8 @@
 package com.itwillbs.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -55,5 +58,45 @@ public class MemberDAOImpl implements MemberDAO {
 	    logger.debug(" 회원가입 완료! ");
 	         
 	}
+
+
+	@Override
+	public MemberVO loginMember(MemberVO vo) {
+        logger.debug("테스트 -> DAO 호출 : 로그인 동작 수행 ");
+        
+        // SQL구문 작성  Mapper에서 마무리함
+        // SQL 실행
+        logger.debug(" DAO -> mapper 사용 SQL 실행");
+        MemberVO resultVO 
+             = sqlSession.selectOne(NAMESPACE+".login", vo); // vo에 id,pw 만 전달됨
+		
+        logger.debug("SQL 실행결과를 리턴 -> 테스트 ");
+        logger.debug(String.valueOf(resultVO)); // null 값이 올때 toString은 안됨
+                                                // resultVO +" " 또는 String.valueOf사용
+        
+		return resultVO;
+		
+	}
+
+
+	@Override
+	public MemberVO loginMember(String userid, String userpw) {
+
+		// 아이디, 비밀번호 전달받아서 사용 
+		// (2개 이상의 정보를 mapper 각각 전달 불가)
+		//   => VO 객체 저장하면 처리가능
+		//   => 전달정보(파라메터정보)는 객체단위로 전달
+//		MemberVO vo = new MemberVO();
+//		vo.setUserid(userid);
+//		vo.setUserpw(userpw);
+	    // 만약에 전달된 정보가 하나의 객체에 저장이 불가능한 경우!
+		Map<String, Object> params = new HashMap<String, Object>();	
+		
+		// SQL 호출, 실행
+//		sqlSession.selectOne(NAMESPACE+".login",vo);
+		
+		return null;
+	}
+	
 
 } // DAOImpl

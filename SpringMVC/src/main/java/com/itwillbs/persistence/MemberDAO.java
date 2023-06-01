@@ -14,6 +14,10 @@ public interface MemberDAO {
   
 	public  void insertMember(MemberVO vo);
 	
-	
+	//  R - 로그인 (회원정보 조회)
+	public MemberVO loginMember(MemberVO vo);
 
+	 
+	public MemberVO loginMember(String userid, String userpw);
+   
 }
