@@ -30,6 +30,8 @@ public class sampleController4 {
 		//  Model 객체 : 전달 방식 상관없이 사용가능, URI에 값이 표시, F5 (데이터 유지)
 		//  RedirectAttributes 객체 : redirect방식일때만 사용가능, URI에 값이 표시X, F5 (데이터 유지X, 1회성)
 	
+		
+		// @ModelAttribute : 내부적으로 Model객체 생성후 그안에 저장해서 사용
 		rttr.addFlashAttribute("data","ITWILL2");
 		// 데이터를 doE주소 (메서드)로 전달
 		
