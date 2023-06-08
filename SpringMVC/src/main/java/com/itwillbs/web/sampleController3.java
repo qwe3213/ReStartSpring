@@ -74,6 +74,8 @@ public class sampleController3 {
 				
 				model.addAttribute("vo", vo);
 				
+		     // model.addAttribute(vo); 전달하는 키가 없음
+			 // => 키(이름)가 없을경우 전달하는 타입의 클래스명을 첫글자소문자로 변경해서 호출
 				
 				return "doC";
 				
