@@ -187,4 +187,33 @@ public class MemberController {
     	return "redirect:/member/main";
     }
     
+ // 회원정보 삭제 -  탈퇴정보 입력(탈퇴)
+    @RequestMapping(value="/remove",method = RequestMethod.GET)
+    public void removeGET(@SessionAttribute String id, Model model) {
+    	logger.debug("removeGET() 호출");
+    	
+    	  MemberVO resultVO = mService.getMember(id);
+          
+          // model 객체 사용 => 정보 저장 (전달 준비)
+          
+          model.addAttribute("resultVO",resultVO);
+    }
+    
+ // 회원정보 삭제 -  정보 삭제(탈퇴)
+    @RequestMapping(value="/remove" ,method = RequestMethod.POST)
+    public String removePOST(MemberVO dvo) {
+    	logger.debug("removePOST() 호출");
+    	logger.debug(" modifyPOST() 호출! ");
+    	// 한글처리 => 필터 처리
+    	// 전달정보 저장(수정데이터)
+    	logger.debug(" 파라메터 자동수집 !!");
+    	logger.debug("dvo" + dvo);
+       int result =	mService.memberRemove(dvo);
+    	
+    	
+       logger.debug("result : " +result);
+       
+        // 페이지 이동 (main)
+    	return "redirect:/member/main";
+    }
 } // controller

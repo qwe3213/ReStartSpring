@@ -16,4 +16,7 @@ public interface MemberService {
 	 // 회원정보 수정
 	 public Integer memberModify(MemberVO uvo);
 	 
+	 // 회원정보 삭제
+	 public Integer memberRemove(MemberVO dvo);
+	 
 	 }
