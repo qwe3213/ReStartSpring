@@ -12,4 +12,8 @@ public interface MemberService {
 	 
 	 // 회원정보조회
 	 public MemberVO getMember(String id);
+	 
+	 // 회원정보 수정
+	 public Integer memberModify(MemberVO uvo);
+	 
 	 }

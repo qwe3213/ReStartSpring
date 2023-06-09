@@ -43,5 +43,13 @@ public class MemberServiceImpl implements MemberService{
 	    
 		return mdao.getMember(id);
 	}
+	
+// 회원정보 수정
+	@Override
+	public Integer memberModify(MemberVO uvo) {
+	
+		return mdao.updateMember(uvo);
+	}
+	
 
 }

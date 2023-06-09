@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.itwillbs.domain.MemberVO;
 import com.itwillbs.service.MemberService;
@@ -143,11 +144,47 @@ public class MemberController {
     	
      	logger.debug("resultVO : " + resultVO);
     	// 연결된 뷰페이지에 전달 => Model 객체
-//    	model.addAttribute("resultVO",resultVO);
-    	model.addAttribute(resultVO);
+    	model.addAttribute("resultVO",resultVO);
+//    	model.addAttribute(resultVO);
+     	model.addAttribute(mService.getMember(id));
     	
         // 페이지 이동    	
     	logger.debug("/member/info.jsp 페이지 이동");
+    }
+    
+    // 회원정보 수정 -  기존의 정보 출력 + 수정정보 입력
+    @RequestMapping(value="/modify" , method = RequestMethod.GET)
+    public void modifyGET(@SessionAttribute String id, Model model) {
+        logger.debug("modifyGET() 호출 ");    
+        
+        logger.debug("id : " + id);
+    	
+        // 기존의 회원정보를 화면에 보여주기
+        // (이름, 이메일 수정하기 - ID/PW 동일한 경우)
+        MemberVO resultVO = mService.getMember(id);
+        
+        // model 객체 사용 => 정보 저장 (전달 준비)
+        
+        model.addAttribute("resultVO",resultVO);
+        // /member/modify.jsp 페이지 이동(출력)
+    }
+    // 회원정보 수정 -  정보 수정(처리)
+    @RequestMapping(value="/modify", method = RequestMethod.POST)
+    public String modifyPOST(MemberVO uvo) {
+    	logger.debug(" modifyPOST() 호출! ");
+    	// 한글처리 => 필터 처리
+    	// 전달정보 저장(수정데이터)
+    	logger.debug(" 파라메터 자동수집 !!");
+    	logger.debug("uvo" + uvo);
+    	
+    	mService.memberModify(uvo);
+    	// 서비스 -> 회원정보 수정가능한 기능
+    	int result = mService.memberModify(uvo);
+    	
+    	logger.debug("result : " + result);
+    	// 페이지 이동(main)
+    	
+    	return "redirect:/member/main";
     }
     
 } // controller

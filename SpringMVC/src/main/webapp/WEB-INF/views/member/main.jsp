@@ -25,6 +25,8 @@
    <hr>
    
    <h2><a href="/member/info">회원정보 조회</a></h2>
+
+   <h2><a href="/member/modify">회원정보 수정</a></h2>
   
 </body>
 </html>

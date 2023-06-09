@@ -20,7 +20,13 @@
 	  <h3> 이메일 : ${resultVO.useremail}</h3>
 	  <h3> 회원가입일 : ${resultVO.regdate}</h3>
 	  <hr>
-	  <h2> model 객체의 정보이름이 없는경우</h2>
+	  <h2> model 객체의 정보이름이 없는경우
+	      -> 전달되는 데이터타입의 클래스명을 
+	         첫글자만 소문자로 바꿔서 이름으로 사용
+	         </h2>
+	         
+	  ${memberVO}
+	  
 	  <h2><a href="/member/main">메인페이지로...</a></h2>
 	  
 </body>
