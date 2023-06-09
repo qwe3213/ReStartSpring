@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,14 +112,42 @@ public class MemberController {
     
     }
     // 메인페이지
-    @RequestMapping(value="/main" , method = RequestMethod.GET)
+    @RequestMapping(value = "/main" , method = RequestMethod.GET)
     public void mainGET() {
     	logger.debug(" mainiGET() 호출 ");
     	
     	logger.debug(" /member/main.jsp페이지 이동 ");
     }
-    
-    
-    
+    // 로그아웃
+    @RequestMapping(value = "/logout" , method = RequestMethod.GET)
+    public String logoutGET(HttpSession session) {
+    	logger.debug("logoutGET() 호출!");
+    	
+    	// 세션정보 초기화
+    	session.invalidate();
+    	
+    	return "redirect:/member/login";
+//    	return "redirect:/member/main";
+    	
+    }
+    //http://localhost:8088/member/login
+    // 회원정보 조회
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public void InfoGET(HttpSession session, Model model) {
+    	logger.debug("infoGET() 호출");
+    	
+    	// 회원정보 가져오기 - 아이디정보 (세션) 디비에 있는 회원정보 모두조회
+    	// 서비스 -> DAO 
+    	String id = (String)session.getAttribute("id");
+     	MemberVO resultVO =  mService.getMember(id);
+    	
+     	logger.debug("resultVO : " + resultVO);
+    	// 연결된 뷰페이지에 전달 => Model 객체
+//    	model.addAttribute("resultVO",resultVO);
+    	model.addAttribute(resultVO);
+    	
+        // 페이지 이동    	
+    	logger.debug("/member/info.jsp 페이지 이동");
+    }
     
 } // controller

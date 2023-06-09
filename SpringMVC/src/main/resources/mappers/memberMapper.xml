@@ -39,4 +39,13 @@
        </delete>
 
       <!-- 회원정보 삭제-->
+      
+      <!-- 회원정보 조회  -->
+       
+      <select id="getMember" resultType="com.itwillbs.domain.MemberVO">
+        select * from tbl_member
+        where userid = #{userid}
+      </select>
+
+      <!-- 회원정보 조회  -->
   </mapper>

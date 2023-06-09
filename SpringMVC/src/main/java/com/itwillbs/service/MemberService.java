@@ -10,4 +10,6 @@ public interface MemberService {
 	 // 로그인
 	 public MemberVO memberLogin(MemberVO vo); // vo - id,pw만 저장
 	 
+	 // 회원정보조회
+	 public MemberVO getMember(String id);
 	 }

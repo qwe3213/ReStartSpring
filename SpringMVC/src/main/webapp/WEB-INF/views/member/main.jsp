@@ -22,7 +22,9 @@
    
    <input type="button"  value="로그아웃" onclick="location.href='/member/logout';">
     
- 
+   <hr>
+   
+   <h2><a href="/member/info">회원정보 조회</a></h2>
   
 </body>
 </html>

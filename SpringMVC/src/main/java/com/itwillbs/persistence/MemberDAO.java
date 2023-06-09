@@ -24,5 +24,6 @@ public interface MemberDAO {
 	// D - 회원정보 삭제
 	public Integer deleteMember(MemberVO dvo);
 	
-	
+	// 회원정보 조회
+	public MemberVO getMember(String id );
 }

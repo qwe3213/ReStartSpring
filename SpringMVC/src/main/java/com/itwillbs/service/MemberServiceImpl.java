@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService{
 	 @Inject
 	 private MemberDAO mdao;
 	
-	 
+// 회원가입
 	@Override
 	public void memberJoin(MemberVO vo) {
        
@@ -28,13 +28,20 @@ public class MemberServiceImpl implements MemberService{
 	    	
 	}
 
-
+// 회원정보 로그인
 	@Override
 	public MemberVO memberLogin(MemberVO vo) {
 	   
 		MemberVO resultVO = mdao.loginMember(vo);
 		
 		return resultVO;
+	}
+
+// 회원정보 조회
+	@Override
+	public MemberVO getMember(String id) {
+	    
+		return mdao.getMember(id);
 	}
 
 }

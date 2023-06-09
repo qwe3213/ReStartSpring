@@ -126,6 +126,14 @@ public class MemberDAOImpl implements MemberDAO {
         Integer result = sqlSession.delete(NAMESPACE+".delete",dvo);
 		return result;
 	}
+
+
+	@Override
+	public MemberVO getMember(String id) {
+		
+		logger.debug("회원정보 조회! mapper 호출!");
+		return sqlSession.selectOne(NAMESPACE + ".getMember",id);
+	}
 	
 	
 	
