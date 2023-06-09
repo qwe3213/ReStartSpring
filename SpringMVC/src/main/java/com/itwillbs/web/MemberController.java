@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,7 +72,7 @@ public class MemberController {
         return "redirect:/member/login";
         
      }
-    
+    //http://localhost:8088/member/login
     // 로그인 - 정보 입력(get)
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public void loginGET() {
@@ -83,20 +84,41 @@ public class MemberController {
     
     // 로그인 - 정보 처리(post)
     @RequestMapping(value = "/login", method=RequestMethod.POST)
-    public String loginPOST(MemberVO vo) {
+    public String loginPOST(MemberVO vo, HttpSession session) {
     	// 전달정보(로그인,ID,PW) 저장
     	logger.debug(vo+"");
     	// 서비스 => DAO - 로그인체크
     	MemberVO resultVO = mService.memberLogin(vo);
     	logger.debug(resultVO+"");
+    	
     	// 로그인 여부에 따라서 페이지 이동
-    	// O
-    	// 메인페이지로 이동 (redirect)
-    	// 로그인 아이디를 세션에 저장
-    	// X
-    	// 다시 로그인페이지로 이동
-    	return "";
+    	if(resultVO !=null) {
+    		// O
+    		// 로그인 아이디를 세션에 저장
+    		session.setAttribute("id", resultVO.getUserid());
+    		logger.debug("로그인 성공! "); 
+    	
+    		return "redirect:/member/main";
+    		// 로그인 성공시 메인페이지로 이동 (redirect)
+    	}else {    		
+    		
+    		// X
+    		logger.debug("로그인 실패! ");
+    		return "redirect:/member/login";
+    		
+    		// 만약 로그인이 실패일경우 다시 로그인 페이지로 이동
+    	}
+    
     }
+    // 메인페이지
+    @RequestMapping(value="/main" , method = RequestMethod.GET)
+    public void mainGET() {
+    	logger.debug(" mainiGET() 호출 ");
+    	
+    	logger.debug(" /member/main.jsp페이지 이동 ");
+    }
+    
+    
     
     
 } // controller
