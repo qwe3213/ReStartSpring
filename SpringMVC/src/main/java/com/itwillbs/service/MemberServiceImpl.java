@@ -1,8 +1,10 @@
 package com.itwillbs.service;
 
-import javax.inject.Inject; 
+import java.util.List;
 
+import javax.inject.Inject;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.MemberVO;
@@ -51,10 +53,19 @@ public class MemberServiceImpl implements MemberService{
 		return mdao.updateMember(uvo);
 	}
 
+	
+// 회원정보 삭제
 	@Override
 	public Integer memberRemove(MemberVO dvo) {
 	
 		return mdao.deleteMember(dvo);
+	}
+// 회원정보 목록
+	@Override
+	public List<MemberVO> getMemberList() {
+		
+		
+		return mdao.getMemberList();
 	}
 	
 

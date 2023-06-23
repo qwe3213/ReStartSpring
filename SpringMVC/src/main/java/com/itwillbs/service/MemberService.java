@@ -1,6 +1,9 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import com.itwillbs.domain.MemberVO;
+
 
 public interface MemberService {
 
@@ -19,4 +22,8 @@ public interface MemberService {
 	 // 회원정보 삭제
 	 public Integer memberRemove(MemberVO dvo);
 	 
-	 }
+	 // 회원정보 목록
+	 public List<MemberVO> getMemberList();
+	 
+
+}

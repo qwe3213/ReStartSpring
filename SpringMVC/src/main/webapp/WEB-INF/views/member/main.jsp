@@ -29,6 +29,13 @@
    <h2><a href="/member/modify">회원정보 수정</a></h2>
    
    <h2><a href="/member/remove">회원정보 삭제</a></h2>
+
+   <c:if test="${!empty sessionScope.id && id.equals('admin')}">
+       <h2><a href="/member/list">회원정보 목록</a></h2>
+   </c:if>
+
+   
+   
   
 </body>
 </html>

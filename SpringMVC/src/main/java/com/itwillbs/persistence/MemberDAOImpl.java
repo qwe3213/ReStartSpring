@@ -1,6 +1,7 @@
 package com.itwillbs.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -133,6 +134,13 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		logger.debug("회원정보 조회! mapper 호출!");
 		return sqlSession.selectOne(NAMESPACE + ".getMember",id);
+	}
+
+
+	@Override
+	public List<MemberVO> getMemberList() {
+	
+		return sqlSession.selectList(NAMESPACE + ".memberList");
 	}
 	
 	

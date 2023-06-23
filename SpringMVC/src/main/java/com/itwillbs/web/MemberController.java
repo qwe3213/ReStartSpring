@@ -1,7 +1,9 @@
 package com.itwillbs.web;
 
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -189,31 +191,56 @@ public class MemberController {
     
  // 회원정보 삭제 -  탈퇴정보 입력(탈퇴)
     @RequestMapping(value="/remove",method = RequestMethod.GET)
-    public void removeGET(@SessionAttribute String id, Model model) {
-    	logger.debug("removeGET() 호출");
+    public void removeGET() {
+    	  logger.debug("removeGET() 호출");
+    	  logger.debug(" /member/remove.jsp 페이지 이동");
     	
-    	  MemberVO resultVO = mService.getMember(id);
-          
-          // model 객체 사용 => 정보 저장 (전달 준비)
-          
-          model.addAttribute("resultVO",resultVO);
+         
     }
-    
+  //http://localhost:8088/member/login
  // 회원정보 삭제 -  정보 삭제(탈퇴)
     @RequestMapping(value="/remove" ,method = RequestMethod.POST)
-    public String removePOST(MemberVO dvo) {
-    	logger.debug("removePOST() 호출");
-    	logger.debug(" modifyPOST() 호출! ");
+    public String removePOST(@SessionAttribute String id,
+    		                 @ModelAttribute("userpw") String userpw,
+    		                 HttpSession session) {
+    	logger.debug(" removePOST() 호출");
+    
     	// 한글처리 => 필터 처리
-    	// 전달정보 저장(수정데이터)
-    	logger.debug(" 파라메터 자동수집 !!");
-    	logger.debug("dvo" + dvo);
-       int result =	mService.memberRemove(dvo);
     	
+    	// 세션 아이디 정보
+    	logger.debug("id : " + id);
+    	// 전달정보 저장(userpw)
+    	logger.debug("pw : " + userpw);
     	
-       logger.debug("result : " +result);
-       
+    	MemberVO vo = new MemberVO();
+    	vo.setUserid(id);
+    	vo.setUserpw(userpw);
+        
+    	// 서비스 -> 정보 삭제처리
+    	Integer result = mService.memberRemove(vo);
+    	
+    	// 삭제 성공시 (기존 세션정보 초기화)
+        if(result == 1) {
+        	session.invalidate();
+        }
+        
         // 페이지 이동 (main)
     	return "redirect:/member/main";
     }
+    
+    // 회원정보 목록(admin)
+    @RequestMapping(value= "/list" , method = RequestMethod.GET)
+    public void listGET(Model model) {
+    	logger.debug(" listGET() 호출");
+        
+    	// 서비스 -> 회원목록 가져오기
+    	List<MemberVO> memberList = mService.getMemberList();
+    	
+    	// Model 객체에 저장
+    	model.addAttribute("memberList", memberList);
+    	
+    	// /member/list.jsp 뷰페이지 이동(출력)
+    	
+    }
+    
 } // controller

@@ -117,6 +117,7 @@
 			<scope>test</scope>
 		</dependency>  
 		
+		<!-- 외부 라이브러리 추가  -->
 		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
 <dependency>
     <groupId>org.bgee.log4jdbc-log4j2</groupId>
@@ -124,7 +125,6 @@
     <version>1.16</version>
 </dependency>
 		
-		<!-- 외부 라이브러리 추가  -->
 <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 
 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -163,6 +163,8 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.25</version>
 </dependency>
+
+<!-- 외부 라이브러리 추가  -->
 	</dependencies>
     <build>
         <plugins>

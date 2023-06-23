@@ -13,10 +13,8 @@
 
 	<fieldset>
 		<form method="post">
-			아이디 : <input type="text" name="userid"><br> 비밀번호 : <input
-				type="password" name="userpw"><br> <input type="button"
-				value="회원가입" onclick="location.href='/member/join';"> <input
-				type="submit" value="삭제">
+			비밀번호 : <input type="password" name="userpw"><br>
+				 <input type="submit" value="탈퇴하기">
 		</form>
 	</fieldset>
 </body>
